@@ -1,12 +1,24 @@
 name: Release
-
 on:
   workflow_dispatch:
-
+    inputs:
+      choice:
+        type: choice
+        description: Select Update Version
+        options:
+          - major
+          - minor
+          - patch
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: gh release list"
+      # - name: Setup Git Config
+      #   run: |
+      #     git config user.name "Crowdin Actions Bot"
+      #     git config user.email "frontend-actions@medit.com"
+      - name: Publish release
+        run: |
+          gh release view
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
