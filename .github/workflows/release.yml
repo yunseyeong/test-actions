@@ -13,6 +13,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       # - name: Setup Git Config
       #   run: |
       #     git config user.name "Crowdin Actions Bot"
