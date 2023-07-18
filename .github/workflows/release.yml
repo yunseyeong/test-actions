@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Update Package.json Version
         id: update
-        uses: './../.github/workflows/package/versionUpdate'
+        uses: './.github/workflows/package/versionUpdate'
         with:
           semVer: 1.0.0
       - name: Echo Updated Version
