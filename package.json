@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Build!!!!!!!!!!!!!!!\" && exit 1"
+    "build": "echo \"Build!!!!!!!!!!!!!!!\""
   },
   "author": "",
   "license": "ISC"
