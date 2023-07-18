@@ -1,0 +1,13 @@
+name: 'Update Package Version'
+description: 'Get variables'
+inputs:
+  semVer:
+    required: true
+
+outputs:
+  result:
+    description: 'First value'
+
+runs:
+  using: 'node16'
+  main: 'action.js'

@@ -23,11 +23,19 @@ jobs:
           node-version: 'current'
       - name: Clean Install
         run: npm ci
-      # - name: Build
-      #   run: npm run build
+      - name: Build
+        run: npm run build
       - name: Publish release
         run: |
           gh release view
           echo "choice is ${{ github.event.inputs.choice }} / ${{ inputs.choice }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update Package.json Version
+        id: update
+        uses: './package/versionUpdate/'
+        with:
+          semVer: 1.0.0
+      - name: Echo Updated Version
+        run: |
+          echo "${{ steps.update.outputs.result }}"
