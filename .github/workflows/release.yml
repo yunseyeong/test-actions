@@ -37,11 +37,10 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         env:
-          FIRST_NAME: Mona
-          LAST_NAME: Octocat
+          semVer: ${{ inputs.choice }}
         with:
           script: |
-            console.log(${{ inputs.choice }} selected!!!)
+            console.log(`${semVer} selected!!!`)
       # - name: Update Package.json Version
       #   id: update
       #   uses: './../.github/workflows/package/versionUpdate'
