@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # gh release edit v1.0.0 --prerelease=false
