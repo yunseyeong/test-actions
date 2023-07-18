@@ -6,22 +6,28 @@ on:
         type: choice
         description: Select Update Version
         options:
-          - major
-          - minor
           - patch
+          - minor
+          - major
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      # - name: Setup Git Config
-      #   run: |
-      #     git config user.name "Crowdin Actions Bot"
-      #     git config user.email "frontend-actions@medit.com"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'current'
+      - name: Clean Install
+        run: npm ci
+      - name: Build
+        run: npm run build
       - name: Publish release
         run: |
           gh release view
+          echo "choice is ${{ github.event.inputs.choice }} / ${{ inputs.choice }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
