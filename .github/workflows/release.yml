@@ -37,9 +37,10 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         env:
-          semVer: ${{ inputs.choice }}
+          SEM_VER: ${{ inputs.choice }}
         with:
           script: |
+            const { SEM_VER } = process.env
             console.log(`${semVer} selected!!!`)
       # - name: Update Package.json Version
       #   id: update
