@@ -10,7 +10,7 @@ on:
           - minor
           - major
 jobs:
-  test:
+  Release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -23,8 +23,8 @@ jobs:
           node-version: 'current'
       - name: Clean Install
         run: npm ci
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
       - name: Publish release
         run: |
           gh release view
