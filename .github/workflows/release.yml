@@ -41,7 +41,7 @@ jobs:
         with:
           script: |
             const { SEM_VER } = process.env
-            console.log(`${semVer} selected!!!`)
+            console.log(`${SEM_VER} selected!!!`)
       # - name: Update Package.json Version
       #   id: update
       #   uses: './../.github/workflows/package/versionUpdate'
