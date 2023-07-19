@@ -1,7 +1,10 @@
-module.exports = ({github, currentVersion, versionType}) => {
-  console.log(github.rest.repos)
+module.exports = ({github, context, currentVersion, versionType}) => {
+  console.log(context)
   console.log(currentVersion, versionType)
-  const latestVersion = github.rest.repos.getLatestRelease()
+  const latestVersion = github.rest.repos.getLatestRelease({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+  })
   console.log(latestVersion);
   const version = currentVersion.replace('v', '').split('.')
   let major = parseInt(version[0], 10)
