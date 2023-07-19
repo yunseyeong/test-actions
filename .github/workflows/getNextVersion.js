@@ -1,7 +1,7 @@
-module.exports = ({github, context, currentVersion, versionType}) => {
+module.exports = async ({github, context, currentVersion, versionType}) => {
   console.log(context)
   console.log(currentVersion, versionType)
-  const latestVersion = github.rest.repos.getLatestRelease({
+  const latestVersion = await github.rest.repos.getLatestRelease({
     owner: context.repo.owner,
     repo: context.repo.repo,
   })
