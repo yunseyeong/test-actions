@@ -43,7 +43,7 @@ jobs:
           script: |
             const { SEM_VER } = process.env
             const script = require("./.github/workflows/getNextVersion.js")
-            console.log(script({github, currentVersion: SEM_VER, versionType: SEM_VER}))
+            console.log(script({github, context, currentVersion: SEM_VER, versionType: SEM_VER}))
       # const script = require("${{github.action_path}}/.github/workflows/getNextVersion.js")
       # - name: Update Package.json Version
       #   id: update
