@@ -1,5 +1,5 @@
 module.exports = ({github, currentVersion, versionType}) => {
-  console.log(github)
+  console.log(github.rest.repos)
   console.log(currentVersion, versionType)
   const latestVersion = github.rest.repos.getLatestRelease()
   console.log(latestVersion);
