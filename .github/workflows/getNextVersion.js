@@ -1,6 +1,8 @@
 module.exports = ({github, currentVersion, versionType}) => {
   console.log(github)
   console.log(currentVersion, versionType)
+  const latestVersion = github.rest.repos.getLatestRelease()
+  console.log(latestVersion);
   const version = currentVersion.replace('v', '').split('.')
   let major = parseInt(version[0], 10)
   let minor = parseInt(version[1], 10)
