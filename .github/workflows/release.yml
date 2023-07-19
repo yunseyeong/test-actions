@@ -42,9 +42,8 @@ jobs:
         with:
           script: |
             const { SEM_VER } = process.env
-            console.log(`${SEM_VER} selected!!!`)
             const script = require("./.github/workflows/getNextVersion.js")
-            console.log(script({currentVersion: SEM_VER}))
+            console.log(script({github, currentVersion: SEM_VER, versionType: SEM_VER}))
       # const script = require("${{github.action_path}}/.github/workflows/getNextVersion.js")
       # - name: Update Package.json Version
       #   id: update
