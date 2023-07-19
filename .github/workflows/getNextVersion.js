@@ -1,12 +1,12 @@
-module.exports = async ({github, context, currentVersion, versionType}) => {
+module.exports = async ({github, context, versionType}) => {
   console.log(context)
   console.log(currentVersion, versionType)
-  const latestVersion = await github.rest.repos.getLatestRelease({
+  const response = await github.rest.repos.getLatestRelease({
     owner: context.repo.owner,
     repo: context.repo.repo,
   })
-  console.log(latestVersion);
-  const version = currentVersion.replace('v', '').split('.')
+  console.log(response.data.name);
+  const version = response.data.name.replace('v', '').split('.')
   let major = parseInt(version[0], 10)
   let minor = parseInt(version[1], 10)
   let patch = parseInt(version[2], 10)
@@ -26,4 +26,7 @@ module.exports = async ({github, context, currentVersion, versionType}) => {
       major++
     }
   }
+  const nextVersion = `v${major}.${minor}.${patch}`
+  console.log('nextVersion = ', nextVersion);
+  return nextVersion
 }
