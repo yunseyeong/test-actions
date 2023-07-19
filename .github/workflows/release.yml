@@ -50,3 +50,13 @@ jobs:
       # - name: Echo Updated Version
       #   run: |
       #     echo "${{ steps.update.outputs.result }}"
+  Update:
+    runs-on: ubuntu-latest
+    needs: Publish
+    steps:
+      - uses: actions/checkout@v3
+      - name: test1234
+        id: id1234
+        uses: ./.github/workflows/package/versionUpdate
+        with:
+          semVer: 1.0.0
