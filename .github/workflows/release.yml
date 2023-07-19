@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: Setup
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/github-script@v6
         env:
           SEM_VER: ${{ inputs.choice }}
@@ -42,7 +43,8 @@ jobs:
           script: |
             const { SEM_VER } = process.env
             console.log(`${SEM_VER} selected!!!`)
-            const script = require("${{github.action_path}}/.github/workflows/getNextVersion.js")
+            # const script = require("${{github.action_path}}/.github/workflows/getNextVersion.js")
+            const script = require("./.github/workflows/getNextVersion.js")
             console.log(script({SEM_VER}))
       # - name: Update Package.json Version
       #   id: update
