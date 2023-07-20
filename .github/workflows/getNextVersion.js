@@ -26,6 +26,6 @@ module.exports = async ({github, context, versionType}) => {
   }
   const nextVersion = `v${major}.${minor}.${patch}`
   console.log('nextVersion = ', nextVersion);
-  console.log(github.rest.releases)
+  console.log(github.rest)
   return nextVersion
 }
