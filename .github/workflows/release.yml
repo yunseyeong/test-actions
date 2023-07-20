@@ -45,7 +45,4 @@ jobs:
           script: |
             const { SEM_VER } = process.env
             const script = require("./.github/workflows/getNextVersion.js")
-            console.log(script({github, context, versionType: SEM_VER}))
-      # - name: Update Relase Note
-      #   run: |
-      #     gh release edit "$script" --draft=false
+            script({github, context, versionType: SEM_VER})
