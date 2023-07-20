@@ -1,9 +1,11 @@
 module.exports = async ({github, context, versionType}) => {
-  const releaseList = await github.rest.repos.listReleases({
+  const releases = await github.rest.repos.listReleases({
     owner: context.repo.owner,
     repo: context.repo.repo,
   })
-  console.log('relaaseList!!!', releaseList.data)
+  const draftRelease = releases.data.filter(_ => _.draft)[0]
+
+  console.log('draftRelease!!!', draftRelease)
 
   const response = await github.rest.repos.getLatestRelease({
     owner: context.repo.owner,
