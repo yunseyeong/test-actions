@@ -25,12 +25,6 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Publish release
-        run: |
-          gh release view
-          echo "choice is ${{ github.event.inputs.choice }} / ${{ inputs.choice }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
       - name: Upload Iamge to ECR
         run: |
@@ -50,12 +44,4 @@ jobs:
             const { SEM_VER } = process.env
             const script = require("./.github/workflows/getNextVersion.js")
             console.log(script({github, context, versionType: SEM_VER}))
-      # const script = require("${{github.action_path}}/.github/workflows/getNextVersion.js")
-      # - name: Update Package.json Version
-      #   id: update
-      #   uses: './../.github/workflows/package/versionUpdate'
-      #   with:
-      #     semVer: 1.0.0
-      # - name: Echo Updated Version
-      #   run: |
-      #     echo "${{ steps.update.outputs.result }}"
+            gh release edit "$script" --draft=false
