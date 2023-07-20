@@ -44,7 +44,6 @@ module.exports = async ({github, context, versionType}) => {
     name: nextVersion,
     draft: false,
     prerelease: false,
-    tag_name: nextVersion,
   })
 
   const publishResultMsg = updateResponse.status === 200 ? 'Publish Success' : 'Publish Failed'
