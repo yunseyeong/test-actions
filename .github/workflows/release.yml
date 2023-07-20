@@ -37,6 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/github-script@v6
+        name: Publish
         env:
           SEM_VER: ${{ inputs.choice }}
         with:
@@ -44,4 +45,6 @@ jobs:
             const { SEM_VER } = process.env
             const script = require("./.github/workflows/getNextVersion.js")
             console.log(script({github, context, versionType: SEM_VER}))
-          # gh release edit "$script" --draft=false
+      # - name: Update Relase Note
+      #   run: |
+      #     gh release edit "$script" --draft=false

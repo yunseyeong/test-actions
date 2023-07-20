@@ -1,6 +1,4 @@
 module.exports = async ({github, context, versionType}) => {
-  // console.log(context)
-  // console.log(currentVersion, versionType)
   const response = await github.rest.repos.getLatestRelease({
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -28,5 +26,6 @@ module.exports = async ({github, context, versionType}) => {
   }
   const nextVersion = `v${major}.${minor}.${patch}`
   console.log('nextVersion = ', nextVersion);
+  console.log(github.rest.releases)
   return nextVersion
 }
