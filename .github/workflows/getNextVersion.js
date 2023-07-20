@@ -1,10 +1,17 @@
 module.exports = async ({github, context, versionType}) => {
+  const releaseList = await github.rest.repos.getLatestRelease({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+  })
+  console.log('relaaseList!!!', releaseList.data)
+  
   const response = await github.rest.repos.getLatestRelease({
     owner: context.repo.owner,
     repo: context.repo.repo,
   })
-  console.log('currentVersion = ', response.data.name);
-  const version = response.data.name.replace('v', '').split('.')
+  const { name, id } = response.data
+  console.log('currentVersion = ', name);
+  const version = name.replace('v', '').split('.')
   let major = parseInt(version[0], 10)
   let minor = parseInt(version[1], 10)
   let patch = parseInt(version[2], 10)
@@ -26,6 +33,13 @@ module.exports = async ({github, context, versionType}) => {
   }
   const nextVersion = `v${major}.${minor}.${patch}`
   console.log('nextVersion = ', nextVersion);
-  console.log(github.rest)
+  const updateResponse = await github.rest.repos.updateRelease({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    release_id: id,
+    name: nextVersion,
+    draft: false,
+  })
+  console.log(updateResponse.data)
   return nextVersion
 }
