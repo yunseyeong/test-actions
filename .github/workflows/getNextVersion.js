@@ -43,7 +43,11 @@ module.exports = async ({github, context, versionType}) => {
     release_id: draftRelease.id,
     name: nextVersion,
     draft: false,
+    prerelease: false,
+    tag_name: nextVersion,
   })
-  console.log(updateResponse)
+
+  const publishResultMsg = updateResponse.status === 200 ? 'Publish Success' : 'Publish Failed'
+  console.log(publishResultMsg)
   return nextVersion
 }
